@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Route Mapper{% endblock %}
+
+{% block content %}
+<div class="container flex">
+    <div class="row text-center">
+        <h1>MapBox Route Builder App</h1>
+
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div id="map" style="width: 100%; height: 400px;"></div>
+
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6 mt-3">
+            {% for address in addresses %}
+            <ul class="list-unstyled">
+                <li>{{ address.address }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12 mt-5">
+            <form class="form-floating" method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="text" class="form-control" id="floating-address-input"
+                    placeholder="1234 Main St. City, State 12345">
+                <input class="btn btn-dark" type="submit" name="submit-btn" value="Add Address">
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

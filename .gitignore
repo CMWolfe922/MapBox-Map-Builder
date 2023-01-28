@@ -1,0 +1,10 @@
+.venv
+.github
+.vscode
+.env
+env
+venv
+secrets.*
+*.ini
+*.cfg
+__pycache__

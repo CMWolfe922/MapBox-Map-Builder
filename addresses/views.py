@@ -10,8 +10,9 @@ class AddressCreateView(CreateView):
 
     model = Address
     fields = ['address']
+    context_object_name = 'addresses'
     template_name = 'addresses/home.html'
-    success_url = '/'
+    success_url = '/home'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -20,11 +21,11 @@ class AddressCreateView(CreateView):
         return context
 
 
-class BaseMapView(TemplateView):
+class BaseMapIndexView(TemplateView):
 
     model = Address
-    template_name = 'base.html'
-    success_url = 'addresses/home.html'
+    template_name = 'index.html'
+    success_url = '/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -28,7 +28,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-6 mt-3">
-            {% for address in addresses %}
+
             <table class="table table-striped table-bordered">
                 <caption class="text-center">Basic Address Table</caption>
                 <thead>
@@ -38,17 +38,52 @@
                     <th>Latitude</th>
                 </thead>
                 <tbody>
+                    {% for address in addresses %}
                     <tr>
                         <td>{{ address.name }}</td>
                         <td>{{ address.address }}</td>
                         <td>{{ address.long }}</td>
                         <td>{{ address.lat }}</td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
-            {% endfor %}
         </div>
 
     </div>
 </div>
+<script>
+    mapboxgl.accessToken = '{{ mapBoxAccessToken }}';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [-91.02493, 30.3673],
+        zoom: 8
+    });
+
+    // Initialize the GeolocateControl.
+    const geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true
+    });
+    // Add the control to the map.
+    map.addControl(geolocate);
+    // Set an event listener that fires
+    // when a trackuserlocationstart event occurs.
+    geolocate.on('trackuserlocationstart', () => {
+        console.log('A trackuserlocationstart event has occurred.');
+    });
+</script>
+
+{% for address in addresses %}
+<script type="text/javascript">
+    var marker = new mapboxgl.Marker()
+        .setLngLat(['{{ address.long }}', '{{ address.lat }}'])
+        .setPopup(new mapboxgl.Popup().setHTML("<p>{{ address.name }} <br> {{ address.address }}</p>"))
+        .addTo(map);
+</script>
+{% endfor %}
 {% endblock %}

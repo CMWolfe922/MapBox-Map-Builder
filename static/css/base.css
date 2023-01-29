@@ -1,4 +1,29 @@
+:root {
+    --title-color: #252323;
+    --shadow-color: #5F6E5E;
+    --isabelline: #F9F6F0;
+    --ebony: #5F6E5E;
+    --rosso-corsa: #D01A11;
+    --cambridge-blue: #C1D8C0;
+    --raisin-black: #252323;
+
+}
+
 .container {
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+h1 {
+    text-shadow: .1em .1em .5em var(--shadow-color);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+body {
+    background-color: var(--cambridge-blue);
+}
+
+card {
+    box-shadow: 1px 1px 1px var(--title-color);
 }

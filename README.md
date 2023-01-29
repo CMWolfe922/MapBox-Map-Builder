@@ -20,9 +20,23 @@
         {% endfor %}
 ```
 
+- This adds controls to the mapbox map.
+
+```javascript
+// Add the control to the map.
+map.addControl(
+  new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+  })
+);
+```
+
 [ ] TODO: Build the address form
 [ ] TODO: Add the time since pickup tag when displaying all the deliveries on the board. `{{ delivery|timesince:pickup_time }}`
 [ ] I can also use the timeuntil filter for time until pickup is ready. `{{ delivery|timeuntil:pickup }}`
+
+[ ] TODO: Create an index file that will act as the "base" for all templates and will contain the login/signup links
 
 ##### Open API Question Responses:
 

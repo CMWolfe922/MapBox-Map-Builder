@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load crispy_template_tags %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-4 align-content-center border-bottom-2 border-dark-subtle" id="page-title">
+            <h1>Delivery Marker: <small>Mark all the locations you deliver to</small></h1>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-3 col-push-9 mt-5 mb-5"
+            style="background-color:#c6e6df; box-shadow: inset 1px -1px 1px #c6e6df9a, inset -1px 1px 1px #c6e6df9a;">
+            This is where the object data will be rendered for routes and deliveries.
+        </div>
+        <div class="jumbotron">
+            <div class="col-9 col-pull-3 justify-content-center"
+                style="background-color:#ffffff; box-shadow: inset 1px -1px 1px #ffffff9a, inset -1px 1px 1px #ffffff9a;">
+                <!-- Draws map on page -->
+                <div class="jumbotron-image-responsive" id="map" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="d-flex justify-content-center py-5">
+
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h2>Sign In</h2>
+                    <hr>
+                    <form method="post" role="form">
+                        {% csrf_token %}
+                        <div class="form-field">
+                            {{ form.username | crispy }}
+                        </div>
+                        <div class="form-field">
+                            {{ form.password | crispy }}
+                        </div>
+                        <input type="hidden" id="next" name="next" value="{{ next }}">
+                        <button class="btn btn-dark btn-block m-4" type="submit">Sign In</button>
+                    </form>
+                    <hr>
+                    <p class="lead">Don't have an account? </p>
+                    <div class="">
+                        <a class="btn btn-dark" href="accounts/register.html">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

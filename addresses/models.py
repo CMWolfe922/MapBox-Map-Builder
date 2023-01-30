@@ -14,14 +14,14 @@ class Route(models.Model):
     end_time = models.TimeField(blank=True, null=True)
 
 
-class RouteTag(models.Model):
+class RouteCode(models.Model):
     route = models.ForeignKey(
         Route,
         on_delete=models.CASCADE,
-        related_name="tags",
-        related_query_name="tag",
+        related_name="routes",
+        related_query_name="route_code",
     )
-    name = models.CharField(max_length=15)
+    name = models.CharField(max_length=10)
 
 
 # Create your models here.
@@ -45,10 +45,11 @@ class Delivery(models.Model):
     pickup_time = models.TimeField(blank=True, null=True)
     delivery_date = models.DateField(blank=True, null=True)
     delivery_time = models.TimeField(blank=True, null=True)
-
+    delivery_image = models.ImageField(upload_to='images/delivery/')
 
 class Driver(models.Model):
     name = models.CharField(max_length=255)
+    driver_number = models.IntegerField(null=True, blank=True, max_length=5)
     email = models.EmailField(max_length=255)
     license_number = models.CharField(max_length=20, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

@@ -49,7 +49,7 @@ class Delivery(models.Model):
 
 class Driver(models.Model):
     name = models.CharField(max_length=255)
-    driver_number = models.IntegerField(null=True, blank=True, max_length=5)
+    driver_number = models.CharField(null=True, blank=True, max_length=5)
     email = models.EmailField(max_length=255)
     license_number = models.CharField(max_length=20, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

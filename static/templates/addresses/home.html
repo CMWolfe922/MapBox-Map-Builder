@@ -16,10 +16,23 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-12 mt-5">
+        <div class="col-lg-6 col-md-8 col-sm-12 mt-3 flex">
             <form class="form-floating" method="post">
                 {% csrf_token %}
-                {{ form | crispy }}
+
+                {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field.name.name }}
+                    {% if field.help_text %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+                {% endfor %}
                 <input type="text" class="form-control" id="floating-address-input"
                     placeholder="1234 Main St. City, State 12345">
                 <input class="btn btn-dark" type="submit" name="submit-btn" value="Add Address">
@@ -27,7 +40,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-6 mt-3">
+        <div class="col-flex mt-3">
 
             <table class="table table-striped table-bordered">
                 <caption class="text-center">Basic Address Table</caption>

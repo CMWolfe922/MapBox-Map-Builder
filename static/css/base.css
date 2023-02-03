@@ -9,10 +9,10 @@
 
 }
 
-.container {
+/* .container {
     padding-top: 10px;
     padding-bottom: 10px;
-}
+} */
 
 h1 {
     text-shadow: .1em .1em .5em var(--shadow-color);

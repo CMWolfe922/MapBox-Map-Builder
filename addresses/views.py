@@ -9,7 +9,7 @@ from .forms import AddressInputForm
 class AddressCreateView(CreateView):
 
     model = Address
-    fields = ['address']
+    fields = ['name', 'address']
     context_object_name = 'addresses'
     template_name = 'addresses/home.html'
     success_url = '/home'

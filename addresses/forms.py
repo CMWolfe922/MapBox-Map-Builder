@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .models import Address
+from .models import Address, Delivery
 from django.contrib.auth.models import User
 
 class AddressInputForm(ModelForm):
@@ -16,3 +16,10 @@ class UserLoginForm(UserCreationForm):
 
     class Meta:
         fields = ['first_name', 'last_name', 'email', 'username', 'password']
+
+
+class DeliveryForm(ModelForm):
+    model = Delivery
+
+    class Meta:
+        fields = ['route', ]

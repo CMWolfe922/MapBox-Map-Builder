@@ -21,13 +21,13 @@ class RouteCode(models.Model):
         related_name="routes",
         related_query_name="route_code",
     )
-    name = models.CharField(max_length=10)
+    route_code = models.CharField(max_length=10)
 
 
 # Create your models here.
 class Address(models.Model):
     name = models.CharField(max_length=120)
-    address = models.TextField()
+    address = models.CharField(max_length=240)
     lat = models.FloatField(blank=True, null=True)
     long = models.FloatField(blank=True, null=True)
 
